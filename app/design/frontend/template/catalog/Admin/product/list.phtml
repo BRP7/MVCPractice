@@ -16,7 +16,10 @@
 
 // echo "<pre>";
 // $productCollection = Mage::getModel("catalog/product")->getCollection();
-$productCollection = Mage::getModel('catalog/product')->getCollection();
+
+$productCollection = $this->showList();
+// $productM = Mage::getModel("catalog/product");
+// $productCollection = Mage::getModel('catalog/product')->getCollection();
 $categoryModel = Mage::getModel('catalog/category');
 $categoryNames = $categoryModel->getCategoryIdName();
 // print_r(get_class($this));
@@ -36,8 +39,9 @@ $categoryNames = $categoryModel->getCategoryIdName();
                         <tr>
                             <th width='200vh'>Product ID</th>
                             <th width='200vh'>Product Name</th>
-                            <!-- <th width='200vh'>SKU</th>
-                            <th width='200vh'>Category</th> -->
+                            <!-- <th width='200vh'>SKU</th>-->
+                            <th width="200vh">Status</th>
+                            <th width='200vh'>Category</th> 
                             <th width='200vh'>Edit</th>
                             <th width='200vh'>Delete</th>
                         </tr>
@@ -50,6 +54,8 @@ foreach ($productCollection->getData() as $product) {
     echo "<tr><td class = 'column' style=' padding: 5px 10px;
     border: 1px solid #ccc;'>" . $product->getProductId() . "</td><td class = 'column' style=' padding: 5px 10px;
     border: 1px solid #ccc;'>" . $product->getName() 
+    . "</td><td class = 'column' style=' padding: 5px 10px;
+    border: 1px solid #ccc;'>" . $product->getStatus()
     . "</td><td class = 'column' style=' padding: 5px 10px;
     border: 1px solid #ccc;'>" .              
      $selectedCategory

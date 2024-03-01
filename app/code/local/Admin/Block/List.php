@@ -11,8 +11,6 @@ class Admin_Block_List extends Core_Block_Template{
         $findQues = substr($findQues, 4);
         $productCollection = Mage::getModel('catalog/product')->getCollection()
             ->addFieldToFilter("category_id", $findQues);
-            return $productCollection;
-       
-        
+            return $productCollection;   
     }
 }

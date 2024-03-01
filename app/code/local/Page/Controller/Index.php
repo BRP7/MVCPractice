@@ -16,7 +16,6 @@ class Page_Controller_Index extends Core_Controller_Front_Action
                     Mage::getImagePath("banner/abc.jpg");
         $layout->getChild('content')
             ->addChild('banner', $banner);
-            // ->addChild('banner1', $banner);
         $layout->toHtml();
     }
     public function saveAction()

@@ -1,16 +1,13 @@
 <?php 
-class Catalog_Controller_Category {
-    // public function formAction()
-    // {
-    //     $layout = $this->getLayout();
-       
-    //     $child = $layout->getChild('content');
+class Catalog_Controller_Category extends Core_Controller_Front_Action {
 
-    //     $categoryForm = $layout->createBlock('catalog/admin_category');
-    //     $child->addChild('form', $categoryForm);
-
-    //     $layout->toHtml();
-
-    // }
+    public function viewAction()
+    {
+        $layout = $this->getLayout();
+        $child = $layout->getchild('content'); //core_block_layout
+        $productForm = $layout->createBlock('catalog/admin_category_list');
+        $child->addChild('list',$productForm);
+        $layout->toHtml();
+    }
 }
 ?>

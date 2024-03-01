@@ -72,25 +72,24 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
         }
     }
 
-    public function listAction()
-    {
-        $layout = $this->getLayout();
-        $requstUri = $_SERVER['REQUEST_URI'];
-        $findQues = stristr($requstUri, '?');
-        $findQues = substr($findQues, 4);
-        // echo "<pre>";
-        // echo "$findQues";
-        // die;
-        if ($findQues) {
-            $child = $layout->getchild('content'); //core_block_layout
-            $productForm = $layout->createBlock('admin/list');
-            $child->addchild('list', $productForm);
-        } else {
-            $child = $layout->getchild('content'); //core_block_layout
-            $productForm = $layout->createBlock('catalog/admin_product_list');
-            $child->addchild('list', $productForm);
-        }
-        $layout->toHtml();
-
-    }
+    // public function listAction()
+    // {
+    //     $layout = $this->getLayout();
+    //     $requstUri = $_SERVER['REQUEST_URI'];
+    //     $findQues = stristr($requstUri, '?');
+    //     $findQues = substr($findQues, 4);
+    //     // echo "<pre>";
+    //     // echo "$findQues";
+    //     // die;
+    //     if ($findQues) {
+    //         $child = $layout->getchild('content'); //core_block_layout
+    //         $productForm = $layout->createBlock('admin/list');
+    //         $child->addchild('list', $productForm);
+    //     } else {
+    //         $child = $layout->getchild('content'); //core_block_layout
+    //         $productForm = $layout->createBlock('catalog/admin_product_list');
+    //         $child->addchild('list', $productForm);
+    //     }
+    //     $layout->toHtml();
+    // }
 }

@@ -31,6 +31,18 @@ class Core_Model_Abstract
 
         return $this->_data[$this->getResource()->getPrimaryKey()];
     }
+    public function getStatus()
+    {
+        // echo 123;
+        $mapping = [
+            1 => "E",
+            0 => "D"
+        ];
+
+        if(isset($mapping[$this->_status]))
+            return $mapping[$this->_data['status']];
+    }
+
     public function getResource()
     {
         // $modelClass = get_class($this);
