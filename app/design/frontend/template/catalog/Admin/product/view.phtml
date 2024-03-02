@@ -1,0 +1,97 @@
+<?php
+
+
+// Retrieve cart data from persistent storage
+$cartData = $this->getCartData();
+$productCollection = $this->showList();
+// $productM = Mage::getModel("catalog/product");
+// $productCollection = Mage::getModel('catalog/product')->getCollection();
+$categoryModel = Mage::getModel('catalog/category');
+$categoryNames = $categoryModel->getCategoryIdName();
+
+?>
+<main>
+
+    <!-- <h1 id="top">Metal Shop</h1> -->
+
+    <?php foreach ($productCollection->getData() as $product) {
+        $selectedCategory = $categoryModel->getCategoryNameById($categoryNames, $product); ?>
+        <div class="card">
+            <div class="contenitore">
+                <img src="<?php echo Mage::getImagePath("banner/" . $product->getImageLink()) ?>" alt="immagine">
+                <h2 class="album">
+                    <?php echo $product->getName(); ?>
+                </h2>
+                <h3 class="band-name">
+                    <?php echo $selectedCategory; ?>
+                </h3>
+                <p class="details">
+                    <?php echo $product->getDescription() ? $product->getDescription() : ""; ?>
+                </p>
+                <p class="prezzo">20,00 €</p>
+                <a href="link?id=<?php echo $product->getProductId() ?>" class="link">🛒</a>
+                <!-- <a href="link?id=<?php //echo $produc->getProductId()  ?>" class="link">ADD TO CART🛒</a> -->
+            </div>
+        </div>
+    <?php } ?>
+
+
+
+    <!-- <aside>
+        <?php
+        // if (!empty($cartData)) {
+        //     echo '<h2 id="cart">🛒 Your Cart</h2>';
+        //     echo '<ul>';
+        //     foreach ($cartData as $product) {
+        //         // Display product information
+            
+        //         echo 'Product ID: ' . $product['id'] . ' | Quantity: ' . $product['quantity'];
+        //         echo '<div class="displayx">';
+        //         echo '<a href="remove?id=' . $product["id"] . '" class="remove">🗑</a>';
+        //         echo '<a href="postdata?id=' . $product["id"] . '" class="order">Proceed to order</a>';
+        //         echo '</div>';
+
+        //         // echo '<a href="postdata?id='.$product["id"].'" id="order">Proceed to order</a>';
+        //     }
+        //     echo '</ul>';
+        // } else {
+        //     echo '<h2 id="cart">🛒 Your Cart is Empty</h2>';
+        // }
+        ?>
+         <p class="cart">🗑</p> -->
+    <!-- </aside>  -->
+
+    <aside>
+    <?php
+    if (!empty($cartData)) {
+        echo '<h2 id="cart">🛒 Your Cart</h2>';
+        echo '<ul>';
+        foreach ($cartData as $customerId => $products) {
+            foreach ($products as $productId => $product) {
+                // Check if the product array has the required keys
+                if (isset($product['id']) && isset($product['quantity'])) {
+                    // Display product information
+                    echo '<li>';
+                    echo 'Product ID: ' . $product['id'] . ' | Quantity: ' . $product['quantity'];
+                    echo '<div class="displayx">';
+                    echo '<a href="remove?id=' . $productId . '" class="remove">🗑</a>';
+                    echo '<a href="postdata?id=' . $productId . '" class="order">Proceed to order</a>';
+                    echo '</div>';
+                    echo '</li>';
+                } else {
+                    // Handle missing keys or invalid data
+                    echo '<li>Error: Invalid product data for Product ID ' . $productId . '</li>';
+                }
+            }
+        }
+        echo '</ul>';
+    } else {
+        echo '<h2 id="cart">🛒 Your Cart is Empty</h2>';
+    }
+    ?>
+</aside>
+
+
+    <a href="#top" id="top" class="top">🔝</a>
+
+</main>

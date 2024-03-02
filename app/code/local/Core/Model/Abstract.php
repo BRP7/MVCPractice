@@ -13,6 +13,8 @@ class Core_Model_Abstract
     protected $_collectionClass = '';
     protected $_resource = null;
     protected $_collection = null;
+
+    protected $_status = null;
     // protected $_modelClass = null;
     // public function __construct(){}
     public function setResourceClass($resourceClass)

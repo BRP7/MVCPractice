@@ -7,8 +7,7 @@ class Core_Model_Resource_Collection_Abstract
     protected $_modelClass = null;
     protected $_select = [];
     protected $_data = [];
-
-    // protected $_status = null;
+    
     // public function __construct()
     // {
     //     echo 123;
@@ -35,7 +34,7 @@ class Core_Model_Resource_Collection_Abstract
         // print_r($value);
         $this->_select['WHERE'][$field][] = $value;
         //["name","abc"]//["name","['eq'=>abc]"]
-        //["product_id","[in=>[1,2,3]]"]
+        //["product_id","[in=>['1','2','3']]"]
         // print_r($this->_select['WHERE']);
         return $this;
     }
@@ -53,12 +52,12 @@ class Core_Model_Resource_Collection_Abstract
                         if (is_array($_v)) {
                             $_v = array_map(function ($v) {
                                 return "'{$v}'";
-                            }, $_v);
+                            }, $_v);//['1','2','3']
                             $_v = implode(',', $_v);//1,2,3 String
                         }
                         switch ($_condition) {
                             case 'eq':
-                                $whereCondition[] = "{$column} = '{$_v}'";
+                                $whereCondition[] = "{$column} = '{$_v}'";//name=abc
                                 break;
                             case 'in':
                                 $whereCondition[] = "{$column} IN ({$_v})";

@@ -35,11 +35,11 @@ class Admin_Controller_Banner extends Core_Controller_Admin_Action{
     public function deleteAction()
     {
         $id = $this->getRequest()->getparams("id");
-        $product = Mage::getModel("catalog/product")->load($id);
+        $product = Mage::getModel("banner/banner")->load($id);
         $result = $product->delete();
         if ($result){
             echo "<script>alert('data deleted sucessfully')</script>";
-            echo "<script>location.href='" . Mage::getBaseUrl() . 'admin/catalog_product/list' . "'</script>";
+            echo "<script>location.href='" . Mage::getBaseUrl() . 'admin/banner/list' . "'</script>";
         }
 
     }
