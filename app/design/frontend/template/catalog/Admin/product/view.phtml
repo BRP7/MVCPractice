@@ -2,6 +2,9 @@
 
 
 // Retrieve cart data from persistent storage
+// print_r($this);
+// die;
+
 $cartData = $this->getCartData();
 $productCollection = $this->showList();
 // $productM = Mage::getModel("catalog/product");
@@ -29,67 +32,63 @@ $categoryNames = $categoryModel->getCategoryIdName();
                     <?php echo $product->getDescription() ? $product->getDescription() : ""; ?>
                 </p>
                 <p class="prezzo">20,00 €</p>
-                <a href="link?id=<?php echo $product->getProductId() ?>" class="link">🛒</a>
+                <a href="<?php echo $this->getUrl('sales/quote/add')?>?id=<?php echo $product->getProductId() ?>" class="link">🛒</a>
                 <!-- <a href="link?id=<?php //echo $produc->getProductId()  ?>" class="link">ADD TO CART🛒</a> -->
             </div>
         </div>
     <?php } ?>
-
-
-
-    <!-- <aside>
-        <?php
-        // if (!empty($cartData)) {
-        //     echo '<h2 id="cart">🛒 Your Cart</h2>';
-        //     echo '<ul>';
-        //     foreach ($cartData as $product) {
-        //         // Display product information
-            
-        //         echo 'Product ID: ' . $product['id'] . ' | Quantity: ' . $product['quantity'];
-        //         echo '<div class="displayx">';
-        //         echo '<a href="remove?id=' . $product["id"] . '" class="remove">🗑</a>';
-        //         echo '<a href="postdata?id=' . $product["id"] . '" class="order">Proceed to order</a>';
-        //         echo '</div>';
-
-        //         // echo '<a href="postdata?id='.$product["id"].'" id="order">Proceed to order</a>';
-        //     }
-        //     echo '</ul>';
-        // } else {
-        //     echo '<h2 id="cart">🛒 Your Cart is Empty</h2>';
-        // }
-        ?>
-         <p class="cart">🗑</p> -->
-    <!-- </aside>  -->
-
     <aside>
     <?php
     if (!empty($cartData)) {
         echo '<h2 id="cart">🛒 Your Cart</h2>';
         echo '<ul>';
+        
+        // Iterate through the outer array
         foreach ($cartData as $customerId => $products) {
+            // Iterate through the inner array of products for each customer
             foreach ($products as $productId => $product) {
-                // Check if the product array has the required keys
-                if (isset($product['id']) && isset($product['quantity'])) {
+                // Check if 'id' and 'quantity' keys are set in the $product array and they are not empty
+                if (isset($product['id'], $product['quantity']) && !empty($product['id']) && !empty($product['quantity'])) {
                     // Display product information
                     echo '<li>';
                     echo 'Product ID: ' . $product['id'] . ' | Quantity: ' . $product['quantity'];
-                    echo '<div class="displayx">';
-                    echo '<a href="remove?id=' . $productId . '" class="remove">🗑</a>';
-                    echo '<a href="postdata?id=' . $productId . '" class="order">Proceed to order</a>';
-                    echo '</div>';
                     echo '</li>';
+                    
+                    // Add links with product IDs only if 'id' key is set
+                    echo '<div class="displayx">';
+                    echo '<a href="' . $this->getUrl('sales/quote/remove') . '?id=' . $product["id"] . '" class="remove">🗑</a>';
+                    echo '<a href="' . $this->getUrl('sales/quote/postdata') . '?id=' . $product["id"] . '" class="order">Proceed to order</a>';
+                    echo '</div>';
                 } else {
-                    // Handle missing keys or invalid data
+                    // Handle cases where 'id' and 'quantity' keys are not set or empty
                     echo '<li>Error: Invalid product data for Product ID ' . $productId . '</li>';
+                    // Debug: Print the contents of $product
+                    echo '<pre>';
+                    print_r($product);
+                    echo '</pre>';
                 }
             }
         }
+        
         echo '</ul>';
     } else {
         echo '<h2 id="cart">🛒 Your Cart is Empty</h2>';
     }
     ?>
 </aside>
+
+
+
+
+
+
+<!-- </aside> -->
+
+
+
+
+
+
 
 
     <a href="#top" id="top" class="top">🔝</a>

@@ -1,7 +1,7 @@
 <?php
 
 class Core_Block_Abstract {
-     public $template;
+     public $template;//core/1column.phtml
     public $data = [];
     // protected $_data;
     public function setTemplate($template){

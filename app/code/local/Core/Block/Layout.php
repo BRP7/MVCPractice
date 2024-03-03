@@ -26,7 +26,7 @@ class Core_Block_Layout extends Core_Block_Template
     }
     public function createBlock($className)
     {
-        return Mage::getBlock($className);//upar thi creatBlock na parameter no
+        return Mage::getBlock($className);
     }
 
 }

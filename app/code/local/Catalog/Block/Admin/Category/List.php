@@ -1,14 +1,14 @@
 <?php
 class Catalog_Block_Admin_Category_list  extends Core_Block_Template {
     public function __construct() { 
-        if($this->findId()){
+        if(Mage::getModel("core/request")->getQueryData("id")){
               $this->setTemplate("catalog/admin/product/view.phtml"); //design
         }else{
             $this->setTemplate("catalog/admin/category/list.phtml"); //design
         }
     }
     public function showList() {
-        $findQues = $this->findId();
+        $findQues =Mage::getModel("core/request")->getQueryData("id");
         $productCollection = Mage::getModel('catalog/product')->getCollection();
         if($findQues){ 
             $productCollection = $productCollection->addFieldToFilter("category_id", $findQues);
@@ -26,12 +26,7 @@ class Catalog_Block_Admin_Category_list  extends Core_Block_Template {
         }
         return $cartData;
     }
-    public function findId(){
-        $requstUri = $_SERVER['REQUEST_URI'];
-        $findQues = stristr($requstUri, '?');
-        $findQues = substr($findQues, 4);
-        return $findQues;
-    }
+    
 
 }
 ?>

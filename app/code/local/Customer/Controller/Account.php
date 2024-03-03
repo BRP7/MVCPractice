@@ -93,7 +93,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
        $sessionId = Mage::getSingleton("core/session")->get("logged_in_customer_id");
        if($sessionId){
         $layout = $this->getLayout();
-        $this->setFormCss('dashboard.css');
+        $this->setFormCss('dashboard');
         $child = $layout->getChild('content');
         $login = $layout->createBlock('customer/dashboard');
         $child->addChild('login', $login);

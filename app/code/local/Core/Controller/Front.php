@@ -6,7 +6,7 @@ class Core_Controller_Front
     {
         $request = Mage::getModel('core/request');
         $actionName = $request->getActionName() . 'Action';
-        $className = $request->getFullControllerClass();
+        $className = $request->getFullControllerClass();//page_controller_index
         $controller = new $className();
         $controller->$actionName();
     }

@@ -9,9 +9,7 @@ class Core_Block_Template extends Core_Block_Abstract
     }
     public function addChild($key, $value)
     {
-        $this->_child[$key] = $value;
-        // echo "<pre>";
-        // print_r($this->_child);
+        $this->_child[$key] = $value;//head=>"obj of page_block_head"
         return $this;
     }
     public function removeChild($key)
