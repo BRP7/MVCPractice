@@ -2,7 +2,7 @@
 	background-color:#292c2f;
 	box-shadow:0 1px 1px #ccc;
 	padding: 20px 40px;
-	height: 80px;
+	width: 100vw;
 	color: #ffffff;
 	box-sizing: border-box;
 	top:-100px;
@@ -12,7 +12,11 @@
 }
 
 .header-fixed .header-limiter {
-	max-width: 1200px;
+	width:100vw;
+	display: flex;
+	justify-content: space-between;
+	/* background-color: #ac2378; */
+	/* max-width: 1200px; */
 	text-align: center;
 	margin: 0 auto;
 }
@@ -46,6 +50,7 @@
 }
 
 .header-fixed .header-limiter nav {
+	margin-right:0%;
 	font:16px Arial, Helvetica, sans-serif;
 	line-height: 40px;
 	float: right;
@@ -60,14 +65,15 @@
 }
 
 .header-fixed .header-limiter nav a:hover{
+	color:#608bd2;
 	opacity: 1;
 }
 
-.header-fixed .header-limiter nav a.selected {
+/* .header-fixed .header-limiter nav a.selected {
 	color: #608bd2;
 	pointer-events: none;
 	opacity: 1;
-}
+} */
 
 /* Fixed version of the header */
 
