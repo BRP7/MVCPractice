@@ -41,7 +41,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
             //     $this->setRedirect("customer/account/dashboard");
             // }
             else {
-                echo "Nahi Huaa";
+                echo "Please Enter valid Username & Password!";
                 $this->setRedirect("admin/user/login");
             }
 
@@ -49,11 +49,8 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
             $layout = $this->getLayout();
             $layout->removeChild('header')->removeChild('footer');
             $child = $layout->getChild('content');
-            $layout->getChild('head')->addCss('header.css')
-                ->addCss('form.css');
+            $layout->getChild('head')->addCss('form.css');
             $login = $layout->createBlock('customer/login')->setTemplate('admin/login.phtml');
-            // print_r($login);
-            // die;
             $child->addChild('login', $login);
             $layout->toHtml();
         }
@@ -63,8 +60,8 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
     {
         $sessionId = Mage::getSingleton("core/session")->get("logged_in_admin_user_id");
         if ($sessionId) {
-            $layout = $this->getLayout();
             $this->setFormCss('dashboard');
+            $layout = $this->getLayout();
             $child = $layout->getChild('content');
             $login = $layout->createBlock('admin/dashboard');
             $child->addChild('login', $login);

@@ -11,14 +11,5 @@ class Catalog_Controller_Product extends Core_Controller_Front_Action{
         $child->addChild('list',$productForm);
         $layout->toHtml();
     }
-    public function removeAction(){
-        $this->removeActionProceed(); 
-    }
-    public function linkAction() {
-        // Get the product ID from the GET parameter
-      $this->linkActionProceed();
-    }
-    public function postdataAction() {  
-        $this->postdataActionProceed();
-     }
+  
 }

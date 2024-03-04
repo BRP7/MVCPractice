@@ -14,4 +14,5 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
     public function postdataAction() {  
         $this->postdataActionProceed();
      }
+
 }

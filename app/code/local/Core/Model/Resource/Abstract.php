@@ -67,7 +67,6 @@ class Core_Model_Resource_Abstract {
     }
     public function deleteSql($table_name, $where)
     {
-        //query prepare krine apse
         $where_con_arr = [];
         foreach ($where as $field => $value) {
             $where_con_arr[] = "`$field`='$value'";

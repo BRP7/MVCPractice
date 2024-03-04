@@ -13,8 +13,8 @@ class Catalog_Model_Category extends Core_Model_Abstract
     // }
     public function getCategoryIdName()
     {
-        $categoryCollection = $this->getCollection();
         $categorys = [];
+        $categoryCollection = $this->getCollection();
         foreach ($categoryCollection->getData() as $category) {
             $categorys[$category->getCategoryId()] = $category->getCategoryName();
         }

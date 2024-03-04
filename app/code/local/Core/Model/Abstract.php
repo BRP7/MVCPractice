@@ -30,8 +30,7 @@ class Core_Model_Abstract
     }
     public function getId()
     {
-
-        return $this->_data[$this->getResource()->getPrimaryKey()];
+        return $this->_data[$this->getResource()->getPrimaryKey()];//$this->_data['product_id']
     }
     public function getStatus()
     {

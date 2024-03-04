@@ -31,10 +31,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('customer');
-        echo"<pre>";
-        // var_dump($data);
-        // print_r($data["first_name"]);
-        // die;
         $productModel = Mage::getmodel('customer/customer');
         $productModel->setData($data);
         $result = $productModel->save();
@@ -57,7 +53,6 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     if(isset($_POST["submit"])){
         $data = $this->getRequest()->getParams("login");
         $model= Mage::getModel("customer/customer");
-        // print_r($data);
         $result =   $model->getCollection()
         ->addFieldToFilter("customer_email", $data["customer_email"])
         ->addFieldToFilter("password", $data["password"]);
@@ -72,8 +67,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             $this->setRedirect("customer/account/dashboard");
         }
         else{
-            $this->setRedirect("customer/account/login");
-            
+            $this->setRedirect("customer/account/login");    
         }
 
     }
@@ -81,8 +75,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         $layout->removeChild('header')->removeChild('footer');
         $child = $layout->getChild('content');
-        $layout->getChild('head')->addCss('header.css')
-                            ->addCss('form.css');
+        $layout->getChild('head')->addCss('form.css');//addCss('header.css')
         $login = $layout->createBlock('customer/login')->setTemplate('customer/account/login.phtml');
         $child->addChild('login', $login);
         $layout->toHtml();
